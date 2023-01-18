@@ -7,13 +7,9 @@
     "dev": "webpack --mode development",
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "webpack --watch",
-    "start": "webpack-dev-server --mode development --open",
-    "server": "node server.js",
-    "build": "webpack"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/edahigure/webpack-tutorial.git"
+    "start": "webpack-dev-server --mode development --open",    
+    "build": "webpack",
+    "server": "node server.js"
   },
   "keywords": [],
   "author": "",
@@ -21,7 +17,6 @@
   "bugs": {
     "url": "https://github.com/edahigure/webpack-tutorial/issues"
   },
-  "homepage": "https://github.com/edahigure/webpack-tutorial#readme",
   "devDependencies": {
     "css-loader": "^6.7.3",
     "express": "^4.18.2",
