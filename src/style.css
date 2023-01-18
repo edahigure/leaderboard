@@ -11,6 +11,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 2px;
+  box-shadow: -2px 2px  1px 1px rgba(200, 200, 200, .4);
 }
 
 .list {
@@ -34,9 +35,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: white;
-
-  /*     box-shadow: -2px 2px  1px 1px rgba(1, 1, 255, .4);   */
+  background-color: white;  
   height: 60px;
   padding: 12px;
   cursor: pointer;
