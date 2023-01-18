@@ -1,25 +1,24 @@
-let toDoList = [ 
-    {
-        index: 0,
-        completed: false,
-        description: 'Activity 1'
-    },
-    {
-        index: 1,
-        completed: false,
-        description: 'Activity 2'
-    },
-    
-]
+const toDoList = [
+  {
+    index: 0,
+    completed: false,
+    description: 'Activity 1',
+  },
+  {
+    index: 1,
+    completed: false,
+    description: 'Activity 2',
+  },
+
+];
 
 function printList() {
-  console.log(toDoList);
-  const list = document.querySelector(".list");
+  const list = document.querySelector('.list');
 
-  for(let i = 0; i<2; i++) {
-    let newItem = document.createElement('div');
-    
-    newItem.id =  `item-id-
+  for (let i = 0; i < 2; i += 1) {
+    const newItem = document.createElement('div');
+
+    newItem.id = `item-id-
     ${toDoList[i].index}`;
 
     newItem.innerHTML = `
@@ -28,11 +27,7 @@ function printList() {
      </li>     
     `;
     list.appendChild(newItem);
-
   }
-  
-
-
 }
 
-export {printList as default}
+export { printList as default };
