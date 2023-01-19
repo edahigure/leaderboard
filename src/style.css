@@ -48,3 +48,15 @@ body {
   background-color: rgb(239, 248, 248);
   cursor: pointer;
 }
+
+[id^="label"] {
+  border-style: none;
+}
+
+[id^="label"]:focus {
+  outline: none;
+}
+
+[id^="trash"] {
+  display: none;
+}
