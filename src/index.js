@@ -1,5 +1,8 @@
 import './style.css';
 
-import printList from './create_list.js';
+import { printList, toDoList } from './create_list.js';
+import { ListTasks, retData } from './taskList.js';
 
-printList();
+//printList(toDoList);
+const myTask = new ListTasks(retData);
+
