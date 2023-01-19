@@ -37,7 +37,7 @@ export class ListTasks {
     const i = this.id;
 
     newTask.id = `item-id-${i}`;
-    console.log(this.taskListArr[i].description);
+
     newTask.innerHTML = `
     <li class="item" id="item-${i}">
         <input type="checkbox" id = "check-${i}" >
@@ -131,8 +131,6 @@ export class ListTasks {
   }
 
   initEvents = () => {
-    
-
     for (let i = 0; i < this.taskListArr.length; i += 1) {
       const editLabel = document.querySelector(`#label-${i}`);
       editLabel.addEventListener('change', () => this.edit(editLabel.id));
