@@ -3,9 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Webpack Exercise</title>
+    <title>To do list</title>
+    <script src="https://kit.fontawesome.com/173db1d6d6.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&family=Lato:wght@300;400&family=Poppins&family=Roboto&display=swap" rel="stylesheet">
+
 <script defer src="/runtime.bundle.js"></script><script defer src="/index.bundle.js"></script></head>
 <body>
-    <h1>Hello webpack!</h1>
+    <div class="toDoList-wrapper">
+        <div class="item"> <div>Today's to do </div> <i class="fa fa-refresh" aria-hidden="true"></i> </div>
+        <div class="item"> 
+            <input class="add-item" id="new-item" type="text" placeholder="Add to your list">
+            <div type ="button" id="add-event"> <i class="fa-solid fa-arrow-turn-down" ></i>  </div>
+        </div>
+       
+        <ul class="list">
+            
+        </ul>
+
+        <input class="clear-all" id="clearAll" type="button" value="Clear all completed"> 
+        
+         
+    </div>
 </body>
+
 </html>
