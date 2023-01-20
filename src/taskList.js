@@ -3,9 +3,9 @@ export class ListTasks {
 
   id;
 
-  constructor() {
+  constructor(taskListArr) {
     // initial array from the local storage
-    this.taskListArr = JSON.parse(localStorage.taksListStorage) || [];
+    this.taskListArr = taskListArr;
 
     this.printList();
 
@@ -223,4 +223,10 @@ export class ListTasks {
   inform = () => 0
 }
 
-export const myTask = new ListTasks();
+let retDataTemp = [];
+
+if (localStorage.taksListStorage !== undefined) {
+  retDataTemp = JSON.parse(localStorage.taksListStorage);
+}
+
+export const myTask = new ListTasks(retDataTemp);
