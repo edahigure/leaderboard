@@ -58,6 +58,22 @@ export class ListTasks {
     `;
 
     list.appendChild(newTask);
+
+    const editLabel = document.querySelector(`#label-${i}`);
+    editLabel.addEventListener('change', () => this.edit(editLabel.id));
+
+    const edit = document.querySelector(`#edit-${i}`);
+    edit.addEventListener('click', () => {
+      edit.style.display = 'none';
+      document.querySelector(`#trash-${i}`).style.display = 'block';
+      const editItem = document.querySelector(`#item-${i}`);
+      editItem.style.backgroundColor = 'lightyellow';
+    });
+
+    const trashItem = document.querySelector(`#trash-${i}`);
+    trashItem.addEventListener('click', () => this.trash(trashItem.id));
+
+
     const str = JSON.stringify(this.taskListArr);
     localStorage.setItem('taksListStorage', str);
 
@@ -158,3 +174,5 @@ if (localStorage.taksListStorage !== undefined) {
 }
 
 export const retData = retDataTemp;
+
+export const myTask = new ListTasks(retData);

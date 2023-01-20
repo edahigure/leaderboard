@@ -1,7 +1,7 @@
 import './style.css';
 
-import { ListTasks, retData } from './taskList.js';
+import { ListTasks, retData, myTask } from './taskList.js';
 
-const myTask = new ListTasks(retData);
+
 
 myTask.inform();
