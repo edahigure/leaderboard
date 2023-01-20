@@ -4,13 +4,12 @@ export class ListTasks {
   id;
 
   constructor(taskListArr) {
-    this.taskListArr = taskListArr; // initial array from the local storage
+    // initial array from the local storage
+    this.taskListArr = taskListArr;
 
-    this.id = 0;
+    this.printList();
 
-    this.printList(taskListArr);
-
-    this.id = taskListArr.length - 1;
+    this.id = this.taskListArr.length - 1;
 
     const addEvent = document.querySelector('#add-event');
     addEvent.addEventListener('click', () => this.addTask());
@@ -19,6 +18,7 @@ export class ListTasks {
     enterAddEvent.addEventListener('keypress', (e) => this.enterAddTask(e));
 
     this.initEvents();
+    this.initClearEvent();
   }
 
   enterAddTask(event) {
@@ -58,6 +58,9 @@ export class ListTasks {
     `;
 
     list.appendChild(newTask);
+
+    this.initEvent(i);
+
     const str = JSON.stringify(this.taskListArr);
     localStorage.setItem('taksListStorage', str);
 
@@ -96,7 +99,7 @@ export class ListTasks {
     document.querySelector('.list').innerHTML = '';
 
     this.id = result.length - 1;
-    this.printList(result);
+    this.printList();
     this.initEvents();
   }
 
@@ -108,13 +111,24 @@ export class ListTasks {
       const newItem = document.createElement('div');
 
       newItem.id = `item-id-${i}`;
-
-      newItem.innerHTML = `
-      <li class="item" id="item-${i}" >
-      <input type="checkbox" id = "check-${i}" >
-          <label for="check-${i}">     
-          <input type="text" id="label-${i}" value="${toDoList[i].description}">
-          </label>
+      let str = '';
+      str = `
+        <li class="item" id="item-${i}" >
+        `;
+      if (toDoList[i].completed === true) {
+        str += `
+        <input type="checkbox" id = "check-${i}" checked>
+            <label for="check-${i}">
+        <input type="text" id="label-${i}" value="${toDoList[i].description}" style="text-decoration: line-through;">
+        </label>`;
+      } else {
+        str += `
+        <input type="checkbox" id = "check-${i}">
+        <label for="check-${i}">
+            <input type="text" id="label-${i}" value="${toDoList[i].description}" checked>
+        </label> `;
+      }
+      str += `
           <div type ="button" id="edit-${i}">      
               <i class="fa-solid fa-ellipsis-vertical" ></i>    
           </div>
@@ -122,31 +136,89 @@ export class ListTasks {
           <div type ="button" id="trash-${i}">      
               <i class="fa-solid fa-trash"></i>
           </div>
-      
-      
+            
        </li>     
       `;
+      newItem.innerHTML = str;
       list.appendChild(newItem);
     }
   }
 
+  initEvent = (i) => {
+    const editLabel = document.querySelector(`#label-${i}`);
+    editLabel.addEventListener('change', () => this.edit(editLabel.id));
+
+    const edit = document.querySelector(`#edit-${i}`);
+    edit.addEventListener('click', () => {
+      edit.style.display = 'none';
+      document.querySelector(`#trash-${i}`).style.display = 'block';
+      const editItem = document.querySelector(`#item-${i}`);
+      editItem.style.backgroundColor = 'lightyellow';
+    });
+
+    const trashItem = document.querySelector(`#trash-${i}`);
+    trashItem.addEventListener('click', () => this.trash(trashItem.id));
+
+    this.addCheckEvent(i);
+  }
+
   initEvents = () => {
     for (let i = 0; i < this.taskListArr.length; i += 1) {
-      const editLabel = document.querySelector(`#label-${i}`);
-      editLabel.addEventListener('change', () => this.edit(editLabel.id));
-
-      const edit = document.querySelector(`#edit-${i}`);
-      edit.addEventListener('click', () => {
-        edit.style.display = 'none';
-        document.querySelector(`#trash-${i}`).style.display = 'block';
-        const editItem = document.querySelector(`#item-${i}`);
-        editItem.style.backgroundColor = 'lightyellow';
-      });
-
-      const trashItem = document.querySelector(`#trash-${i}`);
-      trashItem.addEventListener('click', () => this.trash(trashItem.id));
+      this.initEvent(i);
     }
   }
+
+  initClearEvent = () => {
+    document.querySelector('#clearAll').addEventListener('click',
+      () => {
+        const newArray = [];
+
+        for (let i = 0; i < this.taskListArr.length; i += 1) {
+          if (this.taskListArr[i].completed === false) {
+            newArray.push(this.taskListArr[i]);
+          }
+        }
+        this.taskListArr = newArray;
+        this.id = this.taskListArr.length - 1;
+        const str = JSON.stringify(this.taskListArr);
+        localStorage.setItem('taksListStorage', str);
+        document.querySelector('.list').innerHTML = '';
+        this.printList();
+        this.initEvents();
+      });
+  };
+
+  addCheckEvent = (index) => {
+    const checkItem = document.querySelector(`#check-${index}`);
+    checkItem.addEventListener('change', () => this.editLabel(checkItem.id));
+  };
+
+  editLabel = (checkId) => {
+    const id = checkId.split('-')[1];
+    const checkItem = document.querySelector(`#check-${id}`);
+
+    if (checkItem.checked === true) {
+      const labelItem = document.querySelector(`#label-${id}`);
+      const newLabel = document.createElement('input');
+      newLabel.id = `label-${id}`;
+      newLabel.style = 'text-decoration: line-through;';
+      newLabel.type = 'text';
+      newLabel.value = `${labelItem.value}`;
+      labelItem.parentNode.replaceChild(newLabel, labelItem);
+      this.taskListArr[Number(id)].completed = true;
+    } else {
+      const labelItem = document.querySelector(`#label-${id}`);
+      const newLabel = document.createElement('input');
+      newLabel.id = `label-${id}`;
+      newLabel.type = 'text';
+      newLabel.value = `${labelItem.value}`;
+      labelItem.parentNode.replaceChild(newLabel, labelItem);
+      this.taskListArr[Number(id)].completed = false;
+    }
+
+    const str = JSON.stringify(this.taskListArr);
+    localStorage.setItem('taksListStorage', str);
+  };
 
   inform = () => 0
 }
@@ -157,4 +229,4 @@ if (localStorage.taksListStorage !== undefined) {
   retDataTemp = JSON.parse(localStorage.taksListStorage);
 }
 
-export const retData = retDataTemp;
+export const myTask = new ListTasks(retDataTemp);
