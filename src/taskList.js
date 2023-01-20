@@ -1,10 +1,11 @@
 export class ListTasks {
   taskListArr;
-  id;
-  constructor() {
 
-    this.taskListArr =JSON.parse(localStorage.taksListStorage) || [];
-    //this.taskListArr = taskListArr; // initial array from the local storage
+  id;
+
+  constructor() {
+    // initial array from the local storage
+    this.taskListArr = JSON.parse(localStorage.taksListStorage) || [];
 
     this.printList();
 
