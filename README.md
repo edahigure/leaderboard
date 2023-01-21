@@ -81,7 +81,7 @@ and dependencies of the project
 
 > Add a link to your deployed project.
 
-- [Live Demo Link](https://github.com/edahigure/to-do-list/)
+- [Live Demo Link](https://edahigure.github.io/to-do-list/dist/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
