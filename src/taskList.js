@@ -60,11 +60,15 @@ export class ListTasks {
     list.appendChild(newTask);
 
     this.initEvent(i);
-
-    const str = JSON.stringify(this.taskListArr);
-    localStorage.setItem('taksListStorage', str);
+  
+    this.pushLocalStorage(this.taskListArr);
 
     newItem.value = '';
+  }
+
+  pushLocalStorage(taskListArr){
+    const str = JSON.stringify(taskListArr);
+    localStorage.setItem('taksListStorage', str);
   }
 
   edit = (itemId) => {
@@ -73,9 +77,9 @@ export class ListTasks {
     const editLabel = document.querySelector(`#label-${id}`);
 
     this.taskListArr[id].description = editLabel.value;
-    const str = JSON.stringify(this.taskListArr);
-    localStorage.setItem('taksListStorage', str);
 
+    this.pushLocalStorage(this.taskListArr);
+    
     document.querySelector(`#trash-${id}`).style.display = 'none';
     document.querySelector(`#edit-${id}`).style.display = 'block';
 
@@ -92,9 +96,8 @@ export class ListTasks {
     for (let i = 0; i < result.length; i += 1) {
       result[i].index = i;
     }
-
-    const str = JSON.stringify(result);
-    localStorage.setItem('taksListStorage', str);
+    
+    this.pushLocalStorage(result);
 
     document.querySelector('.list').innerHTML = '';
 
@@ -180,8 +183,11 @@ export class ListTasks {
         }
         this.taskListArr = newArray;
         this.id = this.taskListArr.length - 1;
-        const str = JSON.stringify(this.taskListArr);
-        localStorage.setItem('taksListStorage', str);
+
+        
+        this.pushLocalStorage(this.taskListArr);
+        
+
         document.querySelector('.list').innerHTML = '';
         this.printList();
         this.initEvents();
@@ -216,17 +222,10 @@ export class ListTasks {
       this.taskListArr[Number(id)].completed = false;
     }
 
-    const str = JSON.stringify(this.taskListArr);
-    localStorage.setItem('taksListStorage', str);
+  
+    this.pushLocalStorage(this.taskListArr);
+
   };
 
   inform = () => 0
 }
-
-let retDataTemp = [];
-
-if (localStorage.taksListStorage !== undefined) {
-  retDataTemp = JSON.parse(localStorage.taksListStorage);
-}
-
-export const myTask = new ListTasks(retDataTemp);

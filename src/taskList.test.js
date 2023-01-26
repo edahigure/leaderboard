@@ -1,4 +1,4 @@
-const taskList = require('./taskList');
+import {taskList} from './taskList'
 
 console.log("Here Ok");
 
