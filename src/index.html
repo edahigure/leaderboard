@@ -1,30 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To do list</title>
+    <title>Leaderboard</title>
     <script src="https://kit.fontawesome.com/173db1d6d6.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter&family=Lato:wght@300;400&family=Poppins&family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter&family=Lato:wght@300;400&family=Poppins&family=Roboto&display=swap"
+        rel="stylesheet">
 
 </head>
-<body>
-    <div class="toDoList-wrapper">
-        <div class="item"> <div>Today's to do </div> <i class="fa fa-refresh" aria-hidden="true"></i> </div>
-        <div class="item"> 
-            <input class="add-item" id="new-item" type="text" placeholder="Add to your list">
-            <div type ="button" id="add-event"> <i class="fa-solid fa-arrow-turn-down" ></i>  </div>
-        </div>
-       
-        <ul class="list">
-            
-        </ul>
 
-        <input class="clear-all" id="clearAll" type="button" value="Clear all completed"> 
-        
-         
+<body>
+
+    <div class="LeaderBoard-wrapper">
+        <h1>Leaderboard</h1>
+
+        <div class="wrapper-one">
+            <section class="display">
+                <div class="item-0">
+                    <h2>Recent scores</h2> 
+                    <input class="refresh" id="refresh-button" type="button" value="Refresh">
+                </div>
+
+                <ul class="list">
+                </ul>
+            </section>
+
+            <section class="input">
+                <form class="input-section">
+                    <h2>Add your score</h2>
+                    <input type="text" placeholder="Your name" class="title" size="25">
+                    <input type="text" placeholder="Your score" class="author" size="25">
+                    <input type="submit" id="add-button" value="submit">
+                </form>
+
+            </section>
+        </div>
+
+
+
     </div>
 </body>
 
