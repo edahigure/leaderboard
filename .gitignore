@@ -1,1 +1,11 @@
-/node_modules
+# Ignore Mac system files
+.DS_store
+
+node_modules
+./drop test
+=======
+
+./node_modules
+
+
+
